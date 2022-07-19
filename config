@@ -34,13 +34,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -177,7 +170,7 @@ mode "resize" {
 }
 
 # Colors
-client.focused #555555 #555555 #ffffff #0b2942  #0b2942 
+client.focused #555555 #555555 #ffffff #0b2942  #0b2942
 
 bindsym $mod+r mode "resize"
 
@@ -188,8 +181,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym $mod+i exec i3lock --image /home/dark/Pictures/wallpapers/purple.png
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -197,18 +190,20 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Wallpaper
-exec_always feh --bg-scale /home/dark/Pictures/wallpapers/snow.jpg
+# Screen wallpaper
+exec_always feh --bg-scale /home/dark/Pictures/wallpapers/dark-building-all-alone.jpg
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/dark/i3scripts/toggletouchpad.sh # toggle touchpad
 #Starts Programs
 #Makes active window have a border of 2 pixels
-for_window [class="^.*"] border pixel 3 
+for_window [class="^.*"] border pixel 3
 
 #Custom Bindings for programs
 bindsym Print exec /usr/bin/flameshot gui
 bindsym $mod+shift+d exec /usr/bin/discord
+bindsym $mod+shift+b exec /usr/bin/brave
+bindsym $mod+o exec /usr/bin/obsidian
 
 # Enable popup during fullscreen
 popup_during_fullscreen smart
@@ -235,10 +230,9 @@ for_window [class="Keepassx"] floating enable
 
 #Needed for i3-gaps
 #hide_edge_borders both
-for_window [class="^.*"] border pixel 2 
-gaps inner 15 
-gaps outer 15
+for_window [class="^.*"] border pixel 2
+gaps inner 2
+gaps outer 2
 
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
-
