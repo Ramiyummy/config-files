@@ -44,7 +44,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "RobotoMono 18"
+bindsym $mod+d exec rofi -show drun
 
 # change focus
 bindsym $mod+j focus down
@@ -108,7 +108,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10: "
-
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -139,8 +138,10 @@ assign [class="discord"] $ws4
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -170,7 +171,7 @@ mode "resize" {
 }
 
 # Colors
-client.focused #555555 #555555 #ffffff #0b2942  #0b2942
+client.focused #555555 #555555 #ffffff #137090  #137090 
 
 bindsym $mod+r mode "resize"
 
@@ -178,7 +179,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # i3lock setting
-bindsym $mod+i exec i3lock --image /home/dark/Pictures/wallpapers/purple.png
+bindsym $mod+i exec i3lock -i ~/Pictures/wallpapers/dark-building.png
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
@@ -191,13 +192,13 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screen wallpaper
-exec_always feh --bg-scale /home/dark/Pictures/wallpapers/dark-building-all-alone.jpg
+exec_always feh --bg-scale /home/dark/Pictures/wallpapers/minimalist-dark-blue-wallpapers.jpg
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/dark/i3scripts/toggletouchpad.sh # toggle touchpad
 #Starts Programs
 #Makes active window have a border of 2 pixels
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 3 
 
 #Custom Bindings for programs
 bindsym Print exec /usr/bin/flameshot gui
@@ -236,3 +237,4 @@ gaps outer 2
 
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
+
